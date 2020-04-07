@@ -7,12 +7,15 @@ RUN apt-get install -y --no-install-recommends libatlas-base-dev python3 \
 			python-tk libjpeg-dev libtiff5-dev libjasper-dev libpng12-dev \
 			libavcodec-dev libavformat-dev libswscale-dev libv4l-dev \
 			libxvidcore-dev libx264-dev qt4-dev-tools protobuf-compiler \
-			libilmbase-dev libopenexr-dev libgstreamer1.0-dev && \
+			libilmbase-dev libopenexr-dev libgstreamer1.0-dev libqt4-test && \
 	apt-get clean && \
  	rm -rf /var/lib/apt/lists/*
  
-RUN pip3 install --no-cache-dir tensorflow ipython==7.7.0 && \
-	pip3 install pillow lxml jupyter matplotlib cython flask_opencv_streamer 
+RUN pip3 install --no-cache-dir absl-py
+RUN pip3 install --default-timeout=3000 --no-cache-dir tensorflow 
+RUN pip3 install --default-timeout=3000 ipython==7.7.0 
+
+RUN pip3 install --default-timeout=3000 --no-cache-dir pillow lxml jupyter matplotlib cython flask_opencv_streamer 
 
 RUN mkdir -p /tensorflow1
 
@@ -30,5 +33,6 @@ RUN wget http://download.tensorflow.org/models/object_detection/ssdlite_mobilene
 RUN mkdir -p templates
 
 COPY templates templates
+COPY app.py .
 
 CMD ["python3", "app.py"]

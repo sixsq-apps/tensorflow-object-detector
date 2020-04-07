@@ -36,7 +36,7 @@ IM_HEIGHT = 480
 camera_type = 'usb'
 port = 5000 
 require_login = False
-streamer = Streamer(port, require_login)
+streamer = Streamer(port, require_login, stream_res=(640,480))
 
 # This is needed since the working directory is the object_detection folder.
 sys.path.append('..')
@@ -108,8 +108,8 @@ font = cv2.FONT_HERSHEY_SIMPLEX
 if camera_type == 'usb':
     # Initialize USB webcam feed
     camera = cv2.VideoCapture(0)
-    ret = camera.set(3,IM_WIDTH)
-    ret = camera.set(4,IM_HEIGHT)
+    ret = camera.set(cv2.CAP_PROP_FRAME_WIDTH, 640)
+    ret = camera.set(cv2.CAP_PROP_FRAME_HEIGHT, 480)
 
     while(True):
 
