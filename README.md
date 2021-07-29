@@ -8,3 +8,8 @@ Object detector application based on tensorflow, ready for RPi and with the outp
 # Credits
  - https://github.com/EdjeElectronics/TensorFlow-Object-Detection-on-the-Raspberry-Pi
  - https://github.com/tensorflow/models
+
+
+## Copyright
+
+Copyright &copy; 2021, SixSq SA
